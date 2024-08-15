@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McClain's Subdivision Nominator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+			background-color: #
+        }
+        #result {
+            font-size: 44px;
+            margin-top: 20px;
+			font-family: script,
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <h1>McClain's Subdivision Nominator</h1>
+    <p>Wonder how a simp like you can come up with a boujee name for your suburban neighborhood, division or subdivision? Click to see.</p>
+    <button onclick="generateWords()">NAME MY SUBDIVISION</button>
+
+    <div id="result"></div>
+
+    <script>
+        const table1 = [
+            'The', 'The', 'The',];
+        const table2 = [
+            'Acres', 'Arbors', 'Bays', 'Beaches', 'Bluffs', 'Bogs', 'Brooks', 
+            'Caves', 'Chapel', 'Colonies', 'Cottages', 'Country Club', 'Creeks', 
+            'Crests', 'Crosslands', 'Dales', 'Downs', 'Estates', 'Farms', 
+            'Fields', 'Gables', 'Gardens', 'Groves', 'Harbors', 'Haven', 
+            'Highlands', 'Hills', 'Inlets', 'Knolls', 'Landing', 'Manor', 
+            'Meadows', 'Mesa', 'Oasis', 'Oaks', 'Orchards', 'Parke', 
+            'Parkways', 'Pikes', 'Plains', 'Plantation', 'Playas', 'Ponds', 
+            'Poplars', 'Prarie', 'Preserve', 'Providence', 'Ranch', 'Reserve', 
+            'Residences', 'Resort', 'Retreat', 'Ridges', 'Sanctuary', 'Sands', 
+            'Settlements', 'Shires', 'Springs', 'Streams', 'Summit', 'Sunrise', 
+            'Sunset', 'Sycamores', 'Terns', 'Terrace', 'Valleys', 'Village', 
+            'Villas', 'Vistas', 'Willows', 'Windfarms', 'Pastures', 
+            'Homesteads', 'Vinyards', 'Shores', 'Hearth', 'Refuge', 'Cabins', ];
+        const table3 = [
+            'at', 'by', 'in', 'Near', 'of', 'on','Over','Under',];
+        const table4 = [
+            'Abington', 'Academy', 'Azalea', 'Baywater', 'Beachfront', 'Beachside', 
+            'Bentonwood', 'Birchwood', 'Bonita', 'Breakwater', 'Bridgeshire', 
+            'Bridgewater', 'Brighton', 'Brightridge', 'Butternut', 'Calumet', 
+            'Cambridge', 'Chantilly', 'Cliff', 'College', 'Colonial', 'Coventry', 
+            'Covington', 'Credenza', 'Crown', 'Cypress', 'Danbrooke', 'Derbyshire', 
+            'Downshire', 'Edinburg', 'Evergreen', 'Fallingwater', 'Gardenia', 
+            'Glenshire', 'Golden', 'Greenwich', 'Hamilton', 'Haverfordshire', 
+            'La Jolla', 'Lancaster', 'Liberty', 'Magnolia', 'Nesting', 'Oakdale', 
+            'Olde', 'Palace', 'Paradise', 'Phillimore', 'Pike', 'Pilkington', 
+            'Piper', 'Placid', 'Plymouth', 'Poplar', 'Prarie', 'Ridgewood', 
+            'Rolling', 'Saddle', 'Sandalwood', 'Santi', 'Shire', 'Sierra', 
+            'Spicewater', 'Stafford', 'Staffordshire', 'Sunrise', 'Sunset', 
+            'Sweetwater', 'Sycamore', 'Timber', 'Upshire', 'Valley', 'Venetian', 
+            'Victoria', 'Walnut', 'Wilkington', 'Wimbledon', 'Winterbrooke', 
+            'Wintrow', 'Woodbury', 'Woodridge', 'Yorkleigh', 'Cape', 'Capetown', 
+            'Windsor', 'Fox', 'Copper', 'Verona', 'Antelope', 'Eagle', 'Horizon', 
+            'Harvest', 'Autumn',];
+        const table5 = [
+            'Abbey', 'Acres', 'Arbours', 'Baja', 'Bay', 'Beach', 'Bend', 'Bluff', 
+            'Brook', 'Canyon', 'Coast', 'Colony', 'Commons', 'Corners', 'Court', 
+            'Cove', 'Creek', 'Crossing', 'Crosslands', 'Dales', 'Downs', 'Dune', 
+            'Estate', 'Farm', 'Fields', 'Forest', 'Gap', 'Garden', 'Geyser', 
+            'Glade', 'Glen', 'Gorge', 'Grove', 'Gulch', 'Harbour', 'Haven', 
+            'Heights', 'Highlands', 'Hills', 'Hollow', 'Island', 'Junction', 
+            'Knoll', 'Lagoon', 'Lakes', 'Landing', 'Manor', 'Meadows', 'Mesa', 
+            'Mill', 'Mountains', 'Oaks', 'Orchard', 'Overlook', 'Parish', 'Park', 
+            'Parkway', 'Pasture', 'Pines', 'Place', 'Plains', 'Plantation', 
+            'Pointe', 'Pond', 'Ponds', 'Preserve', 'Providence', 'Quarters', 
+            'Quay', 'Reef', 'Ridge', 'Rise', 'Rock', 'Run', 'Settlement', 
+            'Shores', 'Springs', 'Station', 'Stream', 'Summit', 'Sunset', 
+            'Terrace', 'Vale', 'Valley', 'View', 'Village', 'Vinyard', 
+            'Vista', 'Waters', 'Woods',];
+
+        function getRandomItem(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        function generateWords() {
+            const word1 = getRandomItem(table1);
+            const word2 = getRandomItem(table2);
+            const word3 = getRandomItem(table3);
+            const word4 = getRandomItem(table4);
+            const word5 = getRandomItem(table5);
+                                                    
+            document.getElementById('result').innerHTML = `${word1} ${word2} ${word3} ${word4} ${word5}`;
+        }
+    </script>
+</div>
+</body>
+</html>
+
+
+<!-- 
+Subdivision Randomizer
+Arbitrary 
+
+-->
